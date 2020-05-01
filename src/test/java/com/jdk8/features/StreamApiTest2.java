@@ -98,7 +98,7 @@ public class StreamApiTest2 {
         //});
 
         Stream<Character> flatStream = strList.stream()
-                .flatMap(StreamApiTest2::filterCharater);
+                .flatMap(StreamApiTest2::filterCharater); // flagMap 需要返回一个Stream对象
 
         flatStream.forEach(System.out::println);
 
