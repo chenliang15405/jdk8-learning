@@ -160,11 +160,20 @@ public class LocalDateTimeTest {
         LocalDate ld2 = LocalDate.of(2021, Month.JUNE, 1);
         long betweenday = ChronoUnit.DAYS.between(ld1, ld2);
         long betweenMonth = ChronoUnit.MONTHS.between(ld1, ld2);
-        long betweenSecond = ChronoUnit.SECONDS.between(ld1, ld2);
 
-        System.out.println("相隔秒数：" + betweenSecond);
         System.out.println("相隔天数" + betweenday);
         System.out.println("相隔月数" + betweenMonth);
+    }
+
+    @Test
+    public void test13() {
+        LocalDateTime ld1 = LocalDateTime.now();
+        LocalDateTime ld2 = LocalDateTime.of(2021, Month.JUNE, 1, 12, 30 ,30);
+        long betweenday = ChronoUnit.DAYS.between(ld1, ld2);
+        long betweenSecond = ChronoUnit.SECONDS.between(ld1, ld2);
+
+        System.out.println("相隔秒数" + betweenSecond);
+        System.out.println("相隔天数" + betweenday);
     }
 
     @Test
