@@ -12,8 +12,12 @@ import java.util.stream.Stream;
  * 一、Stream的三个操作步骤
  *
  *  1. 创建stream
+ *      三种方式：
+ *      - List.stream()
+ *      - Arrays.stream(array)
+ *      - Stream.of()
  *
- *  2.  中间操作
+ *  2. 中间操作
  *
  *  3. 终止操作
  *
@@ -41,10 +45,11 @@ public class StreamApiTest1 {
         //4. 创建无限流
         // 迭代
         Stream<Integer> iterate = Stream.iterate(0, (x) -> x + 2);
+        // 取前10个
         iterate.limit(10).forEach(System.out::println);
 
-        // 生成
-        Stream.generate(() -> Math.random()).forEach(System.out::println);
+        // 生成10个随机数
+        Stream.generate(() -> Math.random()).limit(10).forEach(System.out::println);
     }
 
 

@@ -8,8 +8,11 @@ package com.jdk8.features;
  */
 public interface DefaultMethod {
 
-
-    // 接口中的默认方法
+    /**
+     * 默认方法的访问权限是public，这里的default不是访问修饰符，是关键字
+     * @return
+     */
+    // 接口中的默认方法，访问权限是public
     default String getName() {
         return "111";
     }

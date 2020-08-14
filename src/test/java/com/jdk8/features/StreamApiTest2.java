@@ -3,9 +3,7 @@ package com.jdk8.features;
 import com.jdk8.features.pojo.Employee;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Stream;
 
 /**
@@ -21,8 +19,10 @@ import java.util.stream.Stream;
  *
  * 映射
  *  map -> 接收lambda，将元素转换为其他形式或者提取信息，接收一个函数为参数，该函数会应用到每个元素上，并将其映射成一个元素
- *  flatMap -> 接收一个函数作为参数，将流中的每个值都替换为另一个流，然后把所有的流连接成一个流
+ *  map(Function f)   Function<T, R>接收一个T类型的参数，返回一个R类型
  *
+ *  flatMap -> 接收一个函数作为参数，将流中的每个值都替换为另一个流，然后把所有的流连接成一个流
+ *  faltMap(Function f)
  *
  * 排序
  *  sorted() -> 自然排序
@@ -70,7 +70,8 @@ public class StreamApiTest2 {
     }
 
     @Test
-    public void test4() {
+    public void test9() {
+        // distinct去重是根据hashcode和equals方法来作为判断依据
         list.stream()
                 .distinct()
                 .forEach(System.out::println);

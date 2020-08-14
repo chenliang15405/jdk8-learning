@@ -114,7 +114,8 @@ public class LocalDateTimeTest {
 
         DateTimeFormatter par = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-        System.out.println(now.parse("2019-01-01 11:12:32",par));
+        System.out.println(now.parse("2019-01-01 11:12:32", par));
+        System.out.println(LocalDateTime.parse("2019-01-01 11:12:32", par));
     }
 
     @Test
@@ -154,6 +155,9 @@ public class LocalDateTimeTest {
 
     }
 
+    /**
+     * ChronoUnit 用法
+     */
     @Test
     public void test12() {
         LocalDate ld1 = LocalDate.now();
@@ -193,6 +197,21 @@ public class LocalDateTimeTest {
         System.out.println(date);
     }
 
+
+    @Test
+    public void test15() {
+        LocalDate now = LocalDate.now();
+        LocalDate date = now.plusDays(3);
+
+        LocalTime min = LocalTime.MIN;
+        LocalTime max = LocalTime.MAX;
+
+        LocalDateTime start = LocalDateTime.of(now, min);
+        LocalDateTime end = LocalDateTime.of(date, max);
+
+        System.out.println(start);
+        System.out.println(end);
+    }
 
 
 }

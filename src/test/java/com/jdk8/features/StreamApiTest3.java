@@ -23,6 +23,7 @@ import java.util.stream.Collectors;
  *  归均
  *      reduce(T identity, BinaryOperator) / reduce(BinaryOperator) -> 将流中元素反复结合起来，得到一个值
  *
+ *      BinaryOperator<T> 表示接收 T t1, T t2，返回类型T ，所以传递的函数式接口或者定义lambda需要符合该参数列表和返回值类型
  *
  *  收集
  *
@@ -142,7 +143,7 @@ public class StreamApiTest3 {
                 .collect(Collectors.counting());
 
         Double d = peples.stream()
-                .collect(Collectors.averagingInt(Peple::getId));
+                .collect(Collectors.averagingInt(Peple::getId)); // 对流中的指定的整数元素求平均值
 
         Optional<Peple> op = peples.stream()
                             .collect(Collectors.maxBy((e1, e2) -> Integer.compare(e1.getAge(), e2.getAge())));
@@ -187,7 +188,7 @@ public class StreamApiTest3 {
     @Test
     public void test11() {
         IntSummaryStatistics collect = peples.stream()
-                .collect(Collectors.summarizingInt(Peple::getAge));
+                .collect(Collectors.summarizingInt(Peple::getAge)); // 对流中的元素收集为统计值
 
         System.out.println(collect.getAverage());
         System.out.println(collect.getCount());
@@ -212,6 +213,28 @@ public class StreamApiTest3 {
                 .map(Peple::getName)
                 .collect(Collectors.joining(",","===","+++")); // 逗号分隔，并且增加前缀和后缀
         System.out.println(str3);
+    }
+
+
+    /**
+     * 并行流，同时操作集合，速度比串行流更快
+     * 多线程执行，CPU消耗较大
+     */
+    @Test
+    public void test13() {
+        // 使用串行流
+        List<Integer> collect = peples.stream()
+                .map(Peple::getAge)
+                .sorted()
+                .collect(Collectors.toList());
+
+        System.out.println(collect);
+
+        // 使用并行流,CPU会变得较高
+        List<Peple> collect1 = peples.parallelStream()
+                .sorted(Comparator.comparingInt(Peple::getAge))
+                .collect(Collectors.toList());
+        System.out.println(collect1);
     }
 
 }
